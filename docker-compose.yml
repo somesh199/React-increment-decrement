@@ -1,0 +1,17 @@
+version: '3'
+services:
+  react-app:
+    container_name: react-vite-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"  # Expose Vite's default port on the host
+    volumes:
+      - .:/app
+      - /app/node_modules
+    stdin_open: true
+    tty: true
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    command: npm run dev
